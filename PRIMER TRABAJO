@@ -1,0 +1,61 @@
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+int division(int a,int b);
+bool validacion (int a, int b);
+
+
+void main()
+{
+	int d,a,b;
+	do{
+	cout<<"Ingrese el primer numero: ";
+	cin>> a;
+	cout<<"Ingrese el segundo numero: ";
+	cin>> b;
+	}while(validacion(a,b)== false);
+	d = division(a,b);
+	cout<<"El resultado es: "<< d;
+	getch();
+}
+int division(int a, int b)
+{
+	int d=0;
+	while(a>0)
+	{
+	a = a - b;
+	d++;
+	}
+	return (d);
+}
+bool validacion (int a, int b)
+{
+	bool k = false;
+	if((a>0)&&(b>0)&& (a % b == 0))
+	{	
+		k = true;
+	}
+	else{
+		if(a<=0)
+		{
+			cout<< "ERRORR!..El numerador debe ser mayor a cero\n\n";
+		}
+		if (b<=0)
+		{
+			cout<< "ERRORR!..El denominador debe ser mayor a cero\n\n";
+		}
+		if(b>0){
+
+			if(a % b != 0)
+			{
+			cout<< "ERRORR!..Division no es exacta\n\n";
+			}
+			else {
+				cout<< "ERRORR!..No es posible dividir entre cero\n\n";
+			}
+		}
+
+	}
+	return (k);
+}
