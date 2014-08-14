@@ -1,0 +1,59 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+using namespace std;
+int ndigitos(int x);
+int sumarimpares(int x);
+int invertir(int x);
+void main()
+{
+	int x,p,r,q;
+	cout<<"ingrese el numero a que desea";
+	cin>>x;
+	p=ndigitos(x);
+	r=sumarimpares(x);
+	q=invertir(x);
+	cout<<"\n\nel numero de digitos es:"<<p;
+	cout<<"\n\nla suma de los digitos impares es:"<<r;
+	cout<<" \n\nel resultado de invertir es:"<<q;
+	getch();
+}
+int ndigitos(int x)
+{
+	int d,s=0;
+		while(x>0)
+		{
+			d=x%10;
+		    x=x/10;
+            s++; 
+		}
+		
+	return(s);
+}
+int sumarimpares(int x)
+{
+	int d,w=0;
+	while(x>0)
+		{
+			d=x%10;
+		    x=x/10;
+            if(d%2==1)
+			{
+				w=w+d;
+			}
+		}
+
+return(w);
+}
+int invertir (int x)
+{
+int d,n=0;
+while(x>0)
+	{
+	d=x%10;
+	n=n*10+d;
+	x=x/10;
+    }
+return(n);
+}
+
