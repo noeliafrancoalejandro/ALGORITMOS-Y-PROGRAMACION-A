@@ -1,0 +1,119 @@
+#include <iostream>
+#include "conio.h"
+#include <math.h>
+int digitos(int a);
+int sumaprimo(int a);
+int invertir(int a);
+int elimDigImpar(int a);
+bool verfSiEsPrimo(int a);
+bool verOrdenado(int a);
+using namespace std;
+void main()
+{
+	int a,p,s,i,l;
+	cout<< "Ingrese el numero: ";
+	cin>>a;
+	p = digitos(a);
+	cout<<"\n\nEl numero de digitos que tiene su numero es: "<<p;
+	s = sumaprimo(a);
+	cout<<"\n\nLa suma de los numeros primos que tiene su numero es: "<<s;
+	i = invertir(a);
+	cout<<"\n\nSu numero invertido es: "<<i;
+	l=elimDigImpar(a);
+	cout<<"\n\nEl resultado es: "<<l;
+	if(verOrdenado(a)==true)
+		cout<<"\n\nLos digitos SI estan ordenados.. ";
+	else 
+		cout<<"\n\nLos digitos NO estan ordenados.. ";
+getch();
+}
+int digitos(int a)
+{
+
+	int p,d;
+	p=0;
+	while(a>0)
+	{
+	d = a % 10;
+	a = a / 10;
+	p++;
+	}
+return (p);
+}
+int sumaprimo(int a)
+{
+	int s,dig;
+	while (a>0)
+	{
+		dig = a % 10;
+		a = a / 10;
+		if (verfSiEsPrimo(dig) == true)
+			{
+				s = s + dig;
+				
+			}
+	}
+return(s);
+}
+int invertir(int a)
+{
+	int r,i;
+	i=0;
+	while(a!=0)
+	{
+		r=a%10;
+		a=a/10;
+		i=i*10+r;
+	}
+return(i);
+}
+int elimDigImpar(int a)
+{
+	int nroNuevo=0,dig,c=0;
+	if(digitos(a)> digitos(invertir(a)))
+	{
+		c = digitos(a)-digitos(invertir(a));
+	}
+	while (a>0)
+	{
+		dig = a % 10;
+		if(dig%2==0)
+		{
+			nroNuevo= nroNuevo*10 + dig;
+		}
+		a = a / 10;
+	}
+	return(invertir(nroNuevo)*powf(10,c));
+}
+bool verfSiEsPrimo(int a)
+{
+	int i;
+	bool k = true;
+	for(i=2;i<=a-1;i++)
+	{
+		if(a % i == 0)
+		{
+			k = false;
+		}
+	}
+
+	return(k);
+}
+bool verOrdenado(int a)
+{
+	int digAnt, digAct;
+	bool k=true;
+	digAnt= a %10;
+	while ((a>0)&&(k==true))
+	{
+		digAct=a%10;
+
+	if(digAct > digAnt)
+	{
+		k=false;
+	}
+	digAnt=digAct;
+	a=a/10;
+	}
+	return(k);
+}
