@@ -1,0 +1,35 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+using namespace std;
+int concatenar(int n,int x);
+void main()
+{
+	int n,suma,x;
+	cout<<"ingrese primer el numero que quiere unir";
+	cin>>n;
+	cout<<"ingrese segundo el numero que quiere unir";
+	cin>>x;
+	suma=concatenar(n,x);
+		cout<< "luego de concatenar el resultado es:"<<suma+x;
+	
+getch();
+
+}
+int concatenar(int n,int x)
+{
+	int dig,potencia,c,suma,cont;
+	potencia=0;
+	c=10;
+    suma=0;
+	cont=0;
+	while(x>0){
+	dig=x%10;
+	cont++;
+	x=x/10;
+	}
+	potencia=powf(c,cont);
+	suma=(n*potencia);
+	return(suma);
+}
