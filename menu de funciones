@@ -1,0 +1,94 @@
+# include <iostream>
+# include"conio.h"
+
+using namespace std;
+void cargar(int vect[],int n)
+
+{ 
+	int i;
+	for(i=0;i<n;i++){
+		cout<< "ingrese elementos";
+		cin>>vect[i];
+}
+}
+
+void mostrar(int vect[],int n)
+
+{ 
+	int i;
+	cout<< "los elementos del vector son ";
+	for(i=0;i<n;i++){
+	
+		cout<<vect[i];
+	}
+}
+
+bool verificar(int vect[],int n,int elem){
+	int i;
+	bool k=false;
+	for(i=0;i<n;i++){
+		if(vect[i]==elem)
+			k=true;
+	}
+return(k);
+}
+int verificarrepeticion(int vect[],int n ,int elem){
+	int i,c=0;
+	for(i=0;i<n;i++){
+		if(vect[i]==elem)
+			c++;
+	}
+return(c);
+}
+
+
+
+
+int sumaelementos(int vect[],int n)
+
+{ 
+	int i,s=0;
+	for(i=0;i<n;i++){
+		s=s+vect[i];
+	}
+	return(s);
+}
+void main(){
+	int vect[30],n=0,opcion,suma=0,elem;
+	do{
+		cout<<endl<<"++++++MENU++++++";
+	    cout<<endl<<"1.CARGAR VECTOR";
+        cout<<endl<<"2.MOSTRAR VECTOR";
+		cout<<endl<<"3.SUMA DE ELEMENTOS DEL VECTOR ";
+		cout<<endl<<"4.VERIFICAR SI PERTENECE AL VECTOR";
+		cout<<endl<<"5.VERIFICAR CUANTAS VECES SE REPITE UN ELEMENTO";
+		cout<<endl<<"0.SALIR";
+        cout<<endl<<"eliga opcion";
+		cin>>opcion;
+		switch(opcion){
+			case 1: cout<<"introducir el numero de elementos";
+			cin>> n;
+			cargar(vect,n);
+			break;
+			case 2: mostrar(vect,n);
+            break;
+			case 3:cout<<"la suma de elementos"<<sumaelementos(vect,n);
+				break;
+			case 4:cout<<"introducir un numero y luego de verificar un elemento ";
+				cin>>elem;
+				if(verificar(vect,n,elem))
+					cout<<"el elemento si existe";
+				else
+				    cout<<"el elemento no existe";
+				break;
+			case 5:cout<<"introducir elemtos de su repeticion  ";
+				cin>>elem;
+				cout<<"el resulado de verificar es"<<verificarrepeticion(vect,n,elem);
+		}
+
+	}
+		while(opcion!=0);
+	
+		
+	
+}
