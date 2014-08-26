@@ -1,0 +1,53 @@
+#include"stdafx.h"
+#include<iostream>
+#include"conio.h"
+using namespace std;
+
+void cargar_fibo (int vect[],int n);
+int n_fib (int n);
+
+int vect[30];// variable global
+
+
+void cargar_fibo(int vect[],int n)
+{
+	//int aux=0;
+	for(int i=0;i<n;i++)
+	{
+		//aux=i+1;
+		vect[i]=n_fib(i+1);
+	}
+}
+void mostrarf(int vect[],int n)
+{
+	for(int i=0;i<n;i++){
+	cout<<vect[i]<<", ";
+	}
+}
+int n_fib(int n)
+{
+	int a=-1,b=1,fibo=0;
+	if(n==1)
+		return(0);
+	if(n==2)
+		return(1);
+	for(int i=0;i<n;i++)
+	{
+		fibo=a+b;
+		a=b;
+		b=fibo;
+		
+		
+	}
+	return(fibo);
+}
+
+void main()
+{
+	int n;
+	cout<<"ingrese el termino enesimo";
+	cin>> n;
+	cargar_fibo(vect, n);
+    mostrarf(vect,n);
+	getch();
+}
