@@ -1,0 +1,92 @@
+#include "conio.h"
+#include <iostream>
+using namespace std;
+void cargar(int vect[],int n)
+{
+int i;
+for(i=0;i<n;i++){
+cout<<"ingrese el elemento";
+cin>>vect[i];
+}
+}
+bool fibo(int s){
+int a=-1,b=1;
+int c;
+bool k;
+for(int i=0;i<=s;i++){
+c=a+b;
+a=b;
+b=c;
+if(s==c){
+return (true);
+}
+}
+return(false);
+}
+bool primo(int k){
+int i;
+for(i=2;i<k;i++){
+	if(k%i==0){
+	return (true);
+	}
+}
+
+return (false);
+}
+void ordenar(int vect[],int n)
+{
+	int cont=0,aux,dig,cp=1;
+	for(int i=0;i<n;i++){
+	if(fibo(vect[i])==true)
+	{
+		//cout<<"fibo verdadero"<<vect[i];
+		aux=vect[i];
+		while(aux>0){
+		dig=aux%10;
+		cont++;
+		aux=aux/10;
+		if(primo(dig)==false){
+			cout<<cp;
+			//cout<<"verdadero primo dig"<<dig
+        cp++;
+		if{cp}
+		}
+		}
+	
+	}
+
+	}
+}
+void mostrar(int vect[],int n)
+{
+int i;
+for(i=0;i<n;i++){
+	cout<<vect[i];
+}
+}
+void main(){
+int vect[30];
+int opc,n;
+do{
+cout<< endl<<"1.\nPARA CARGAR EL VECTOR";
+cout<< endl<<"2. ORDENAR";
+cout<< endl<<"3.\mostrar vector";
+cout<< endl<<"\ingrese opc";
+cin>>opc;
+switch(opc){
+case 1:
+cout<<"ingrese el tamaño de vector";
+cin>>n;
+cargar(vect,n);
+break;
+case 2:
+ordenar(vect,n);
+break;
+case 3:
+cout<<"PARA MOSTRAR EL VECTOR RESULTANTE ES";
+mostrar(vect,n);
+break;
+}
+}
+while(opc!=0);
+}
