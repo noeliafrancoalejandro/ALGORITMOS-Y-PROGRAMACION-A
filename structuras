@@ -1,0 +1,70 @@
+#include"conio.h"
+#include<iostream>
+#include <string.h>
+using namespace std;
+struct regamigo{
+char nombre [30];
+int edad;
+char sexo;
+};
+void cargar(regamigo v[],int n){
+	int i;
+	for(i=0;i<n;i++){
+	cout<<"introducir nombres ";
+	do{
+	gets(v[i].nombre);
+	}
+while(strlen (v[i].nombre)==0);
+cout<<"edad";
+cin>>v[i].edad;
+cout<<"sexo?";
+cin>>v[i].sexo;
+	}
+}
+void mostrar (regamigo v[],int n){
+int i;
+for(i=0;i<n;i++){
+	cout<<v[i].nombre<<"";
+	cout<<v[i].edad<<"";
+	cout<<v[i].sexo;
+
+}
+}
+int mayor(regamigo v[],int n){
+int i,edadmayor=0;
+for(i=0;i<n;i++){
+	if(v[i].edad>edadmayor){
+	
+		edadmayor=v[i].edad;
+
+	}
+}
+return(edadmayor);
+}
+regamigo datosmayor(regamigo v[],int n){
+int i,edadmayor=0;
+regamigo amigomay;
+for(i=0;i<n;i++){
+	if(v[i].edad>edadmayor){
+	
+		edadmayor=v[i].edad;
+        amigomay=v[i];
+	}
+}
+return(amigomay);
+}
+void main(){
+	int n,c,s;
+	regamigo v[30],aux;
+	cout<<"cuantos amigos";
+	cin>>n;
+	cargar(v,n);
+	mostrar(v,n);
+    s=mayor(v,n);
+	cout<<"la edad mayor es :";
+	cout<<s;
+	aux = datosmayor(v,n);
+	cout<<"los datos del mayor son"<<aux.nombre<<" "<<aux.edad<<""<<aux.sexo;	
+	getch();
+}
+
