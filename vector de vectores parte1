@@ -24,9 +24,9 @@ cin>>v[i].sexo;
 void mostrar (regamigo v[],int n){
 int i;
 for(i=0;i<n;i++){
-	cout<<v[i].nombre<<"";
-	cout<<v[i].edad<<"";
-	cout<<v[i].sexo;
+	cout<<"NOMBRE DEL REGISTRO :"<<v[i].nombre<<" "<<endl;
+	cout<<"EDAD DEL REGISTRO :"<<v[i].edad<<" "<<endl;
+	cout<<"SEXO DEL REGISTRO :"<<v[i].sexo<<" "<<endl;
 
 }
 }
@@ -66,7 +66,7 @@ v[k]=aux;
 	}
 }
 }
-void eliminar(regamigo v[],int n){
+void eliminar(regamigo v[],int &n){
 	int i,k,z;
 	z=mayor(v,n);
 	for(i=0;i<n;i++){
@@ -81,9 +81,7 @@ void eliminar(regamigo v[],int n){
 }
 void main(){
 	int n,opc,c,s;
-	regamigo v[30],aux;
-	cout<<"CUANTOS AMIGOS DESEA REGISTRAR ";
-	cin>>n;		
+	regamigo v[30],aux;	
 	do{
 		cout<<"*******MENU********\n\n"<<endl;
 cout<<"1. CARGAR ESTRUCTURA"<<endl;
@@ -96,6 +94,8 @@ cout<< "ingrese opcion";
 cin>>opc;
 	switch(opc){
 	case 1:
+	cout<<"CUANTOS AMIGOS DESEA REGISTRAR ";
+	cin>>n;	
 		cargar(v,n);
 			break;
 		case 2:
@@ -108,7 +108,7 @@ cin>>opc;
 	   break;
 		case 4:
     aux = datosmayor(v,n);
-	cout<<"los datos del mayor son"<<aux.nombre<<" "<<aux.edad<<""<<aux.sexo;
+	cout<<"los datos del mayor son"<<aux.nombre<<" "<<aux.edad<<" "<<aux.sexo;
 	break;
 		case 5:
 	ordenar(v,n);
