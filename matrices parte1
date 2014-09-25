@@ -1,0 +1,119 @@
+#include<iostream>
+#include"conio.h"
+using namespace std;
+#define FIL 20
+#define COL 20
+
+void cargar(int mat[FIL][COL],int n,int m){
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+		cout<<"INGRESE LOS ELEMENTOS DE LA MATRIZ";
+		cin>>mat[i][k];
+		}
+	}
+
+}
+void mostrar(int mat[FIL][COL],int n,int m){
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+		cout<<mat[i][k]<<"";
+	
+		}
+	cout<<endl;
+	}
+	
+}
+int suma(int mat[FIL][COL],int n,int m){
+	int suma=0;
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+		suma=suma+mat[i][k];
+	
+		}
+	}
+	return(suma);
+}
+
+void sumafilas(int mat[FIL][COL],int n,int m){
+	int suma=0;
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+			suma=suma+mat[i][k];
+		}
+	cout<<"la suma de cada fila es"<<","<<suma;
+		suma=0;
+	}
+}
+int sumatriangularsup(int mat[FIL][COL],int n,int m){
+	int sumap=0;
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+			if(i<k)
+			sumap=sumap+mat[i][k];
+		}
+	}
+	return(sumap);
+}
+int sumatriangularinf(int mat[FIL][COL],int n,int m){
+	int sumai=0;
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+			if(i>k)
+			sumai=sumai+mat[i][k];
+		}
+	}
+	return(sumai);
+}
+int sumadiagonal(int mat[FIL][COL],int n,int m){
+	int sumad=0;
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+			if(i==k)
+			sumad=sumad+mat[i][k];
+		}
+	}
+	return(sumad);
+}
+
+void main(){
+	int n,m,opc;
+	int	mat[FIL][COL];
+	do{
+		cout<< "*******MENU*******"<<endl;
+cout<<"1.CARGAR UNA MATRIZ"<<endl;
+cout<<"2.MOSTRAR LA MATRIZ"<<endl;
+cout<<"3.SUMA DE TODA LA MATRIZ"<<endl;
+cout<<"4.SUMA DE TODA LA MATRIZ POR FILAS"<<endl;
+cout<<"5.SUMA DE LA TRIANGULAR SUPERIOR"<<endl;
+cout<<"6.SUMA DE LA TRIANGULAR INFERIOR"<<endl;
+cout<<"7.SUMA DE LA DIAGONAL"<<endl;
+cout<<"ELIGA OPCION";
+cin>>opc;
+switch(opc){
+case 1:
+	cout<<"ingrese el tamano de las filas";
+	cin>>n;
+	cout<<"ingrese el tamano de las columnas";
+	cin>>m;
+	cargar(mat,n,m);
+	break;
+case 2:mostrar(mat,n,m);
+	break;
+case 3:cout<<"la suma es"<<" "<<suma(mat,n,m);
+
+	break;
+case 4:sumafilas(mat,n,m);
+	break;
+case 5:
+	cout<<"la suma de la matriz triangular superior es"<<sumatriangularsup(mat,n,m);
+	break;
+case 6:
+	cout<<"la suma de la matriz triangular inferior"<<sumatriangularinf(mat,n,m);
+	break;
+case 7:
+	cout<<"la suma de la diagonal de la matriz es"<<sumadiagonal(mat,n,m);
+	break;
+}
+	}
+	while(opc!=0);
+}
