@@ -1,0 +1,203 @@
+#include<iostream>
+#include"conio.h"
+using namespace std;
+#define FIL 20
+#define COL 20
+
+void cargar(int mat[FIL][COL],int n,int m){
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+		cout<<"INGRESE LOS ELEMENTOS DE LA MATRIZ";
+		cin>>mat[i][k];
+		}
+	}
+
+}
+void mostrar(int mat[FIL][COL],int n,int m){
+	for(int i=0;i<n;i++){
+		for(int k=0;k<m;k++){
+		cout<<mat[i][k]<<"   ";
+	
+		}
+	cout<<endl;
+	}
+	
+}
+void multiplicacion(int mat[FIL][COL],int mat2[FIL][COL],int mat3[FIL][COL],int n,int m,int p,int s){
+int j,k,i,pro=0;
+for(i=0;i<n;i++){
+	for(j=0;j<m;j++){
+		for(k=0;k<s;k++){
+		pro= pro+mat[i][k]*mat2[k][j];
+		mat3[i][j]=pro;
+      	}
+	pro=0;
+	}
+
+}
+//mostrar(mat3,n,m);
+}
+void cargar_identidad(int mati[FIL][COL],int l,int q){
+	int i,j;
+	for(i=0;i<l;i++){
+		for(j=0;j<q;j++){
+			if(i==j){
+			mati[i][j]=1;
+			}
+			else
+				mati[i][j]=0;
+		}	
+	}
+
+}
+void cargar_trisup(int mats[FIL][COL],int v,int b){
+int i,j,cont=1;
+for(i=0;i<v;i++){
+	for(j=0;j<b;j++){
+		if(i>j){
+		mats[i][j]=0;
+		}
+		else
+		mats[i][j]= cont;
+		cont++;
+	}
+
+}
+
+}
+void transpuesta(int matr[FIL][COL],int j,int g,int matr2[FIL][COL],int &h,int &t){
+	int i,k;
+	cargar(matr,j,g);
+	cout<<"la matriz original es"<<endl;
+	mostrar(matr,j,g);
+	for(i=0;i<j;i++){
+		for(k=0;k<g;k++){
+		matr2[k][i]=matr[i][k];
+		}
+	}
+}
+
+void suma(int mat[FIL][COL],int mat2[FIL][COL],int mat3[FIL][COL],int n,int m,int p,int s){
+int j,i,suma=0;
+for(i=0;i<n;i++){
+	for(j=0;j<m;j++){
+		suma=mat[i][j]+mat2[i][j];
+		mat3[i][j]=suma;
+	}
+	suma=0;
+}
+
+}
+void main(){
+	int n,m,p,s,v,b,l,h,t,q,j,g,opc;
+	int	mat[FIL][COL],mat2[FIL][COL],matr[FIL][COL],matr2[FIL][COL],mat3[FIL][COL],mats[FIL][COL],mati[FIL][COL];
+	do{
+		cout<< "*******MENU*******"<<endl;
+cout<<"1.CARGAR UNA MATRIZ"<<endl;
+cout<<"2.CARGAR SEGUNDA MATRIZ"<<endl;
+cout<<"3.MOSTRAR LA MATRIZ"<<endl;
+cout<<"4.MOSTRAR LA SEGUNDA MATRIZ"<<endl;
+cout<<"5.MULTIPLICACION DE DOS MATRICES"<<endl;
+cout<<"6.MOSTRAR MATRIZ IDENTIDAD"<<endl;
+cout<<"7.TRIANGULAR SUPERIOR"<<endl;
+cout<<"8.MATRIZ TRANSPUESTA"<<endl;
+cout<<"9.SUMA DE MATRICES"<<endl;
+cout<<"ELIGA OPCION";
+cin>>opc;
+switch(opc){
+case 1:
+	cout<<"ingrese el tamano de las filas";
+	cin>>n;
+	cout<<"ingrese el tamano de las columnas";
+	cin>>m;
+	cargar(mat,n,m);
+	break;
+case 2:
+	cout<<"ingrese el tamano de las filas";
+	cin>>p;
+	cout<<"ingrese el tamano de las columnas";
+	cin>>s;
+	cargar(mat2,p,s);
+	break;
+case 3: mostrar(mat,n,m);	
+    break;
+case 4: mostrar(mat2,p,s);
+	break;
+case 5:do{
+	   cout<<"PARA MULTIPLICAR MATRICES ES NECESARIO QUE AMBAS SEAN DEL MISMO TAMANO"<<endl;
+	   cout<<"ingrese el numero de filas de la matriz a"<<endl;
+	   cin>>n;
+	   cout<<"ingrese el numero de columnas para la matriz a"<<endl;
+	   cin>>m;
+	   cout<<"ingrese el numero de filas de la matriz b"<<endl;
+	   cin>>p;
+	   cout<<"ingrese el numero de columnas de la matriz b"<<endl;
+	   cin>>s;
+	   }
+	   while((n!=m)|| (p!=s)|| (n!=p)|| (m!=s));
+	   cargar(mat,n,m);
+	   cout<<"elementos de la segunda matriz"<<endl;
+	   cargar(mat2,p,s);
+	   multiplicacion(mat,mat2,mat3,n,m,p,s);
+	   mostrar(mat3,n,m);
+	   break;
+	   case 6:
+		   do{
+		   cout<<"LA MATRIZ IDENTIDAD ES VALIDA SOLO PARA MATRICES CUADRADAS"<<endl;
+		   cout<<"ingrese el tamano de las filas"<<endl;
+		   cin>>l;
+		   cout<<"ingrese el tamano de las columnas"<<endl;
+		   cin>>q;
+		   }
+		   while(l!=q);
+		   cargar_identidad(mati,l,q);
+		   mostrar(mati,l,q); 
+		   break;
+	   case 7:
+		do{
+		   cout<<"ES NECESARIO QUE LA MATRIZ TRIANGULAR SUPERIOR SEA CUADRADA"<<endl;
+			   cout<<"ingrese numero de filas"<<endl;
+		   cin>>v;
+        cout<<"ingrese numero de columnas "<<endl;
+		cin>>b;
+		}
+		while(v!=b);
+			cargar_trisup(mats,v,b);
+		    mostrar(mats,v,b);
+	   case 8:
+		   cout<<"LA MATRIZ TRANSPUESTA PUEDE SER DE CUALQUIER TAMANO"<<endl;
+		   cout<<"ingrese el tamano de las filas "<<endl;
+		   cin>>j;
+		   cout<<"ingrese el tamano de las columnas"<<endl;
+		   cin>>g;
+		   h=g;
+		   t=j;
+		  transpuesta(matr,j,g,matr2,h,t);
+		  cout<<"LA TRANSPUESTA DE LA ORIGINAL ES"<<endl;
+		  mostrar(matr2,h,t);
+		  
+	   case 9:do{
+	   cout<<"PARA	SUMAR MATRICES ES NECESARIO QUE AMBAS SEAN DEL MISMO TAMANO"<<endl;
+	   cout<<"ingrese el numero de filas de la matriz a"<<endl;
+	   cin>>n;
+	   cout<<"ingrese el numero de columnas para la matriz a"<<endl;
+	   cin>>m;
+	   cout<<"ingrese el numero de filas de la matriz b"<<endl;
+	   cin>>p;
+	   cout<<"ingrese el numero de columnas de la matriz b"<<endl;
+	   cin>>s;
+	   }
+	   while((n!=m)|| (p!=s)|| (n!=p)|| (m!=s));
+	   cargar(mat,n,m);
+	   cout<<"elementos de la segunda matriz"<<endl;
+	   cargar(mat2,p,s);
+	   suma(mat,mat2,mat3,n,m,p,s);
+	   mostrar(mat3,n,m);
+	   break;
+	   
+}
+
+	}
+	while(opc!=0);
+}
+   
