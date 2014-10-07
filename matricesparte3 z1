@@ -1,0 +1,122 @@
+#include <iostream>
+#include "conio.h"
+#define FIL 50
+#define COL 50
+using namespace std;
+
+void cargarMat(int mat[FIL][COL],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<"Ingrese los elementos [ "<<i<<","<<j<<" ] ? : ";
+			cin>>mat[i][j];
+		}
+	}
+}
+void mostrarmat(int mat[FIL][COL],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			cout<<mat[i][j]<<"    ";
+		}
+		cout<<endl;
+	}
+}
+void transpuesta(int mat[FIL][COL],int &n,int &m){
+	int i,j,aux;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			if(i<j){
+			aux       = mat[i][j];
+			mat[i][j] = mat[j][i];
+			mat[j][i] = aux;
+			}
+		}
+	}
+}
+bool verfSiEsPrimo(int n){
+	int i;
+	bool k=true;
+	for(i=2;i<=n-1;i++){
+		if(n%i==0){
+			k=false;
+		}
+	}
+	return(k);
+}
+void ordenar(int vector[],int n){
+	int i,j,aux;
+	for (int i=0;i<n;i++){
+		for(int j=i;j<n;j++){
+			if(vector[i]> vector[j]){
+				aux=vector[i];
+				vector[i]=vector[j];
+				vector[j]=aux;
+			}
+		}
+	}
+}
+
+void ordenarPrimosAscPorFila(int mat[FIL][COL],int n,int m){
+		int i,j,vec[COL];
+		bool k;
+		for (i=0;i<n;i++){
+			k=false;
+			for(j=0;j<m;j++){
+				if(verfSiEsPrimo(mat[i][j])==true){
+					k=true;
+				}
+			}
+			if(k){
+				for(j=0;j<m;j++){
+					vec[j]=mat[i][j];
+				}
+				ordenar(vec,j);
+				for(j=0;j<m;j++){
+					mat[i][j]=vec[j];
+				}
+			}
+		}
+}
+void cargarNrosAleatorios(int mat[FIL][COL],int n,int m){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<m;j++){
+			mat[i][j]=rand()%(50-1);
+		}
+	}
+}
+/*void cargarEspiralNaturales(int mat[FIL][COL],int n,int m){
+	int i,j,cont=0;
+	for(i=0;i<n;i++){
+			mat[i][j]=cont++;
+			for(j=i;j<m;j++){
+				mat[i][j]=cont++;
+			}
+	}
+}
+*/				
+
+void main(){
+	int matriz[FIL][COL],n,m;
+	cout<<"Introducir el nro de filas : ";
+	cin>>n;
+	cout<<"Introducir el nro de columnas : ";
+	cin>>m;
+	//cargarMat(matriz,n,m);
+	//cout<<"La matriz cargada es..\n";
+	//mostrarmat(matriz,n,m);
+	//cout<<"La transpuesta es.. \n";
+	//transpuesta(matriz,n,m);
+	//mostrarmat(matriz,n,m);
+	//cout<<"La matriz ordenada es..\n";
+	//ordenarPrimosAscPorFila(matriz,n,m);
+	//mostrarmat(matriz,n,m);
+	//cout<<"La matriz cargada aleatoriamente es..\n";
+	//cargarNrosAleatorios(matriz,n,m);
+	//mostrarmat(matriz,n,m);
+	cout<<"La matriz cargadaespiral automaticamente con nros naturales es..\n";
+	cargarEspiralNaturales(matriz,n,m);
+	mostrarmat(matriz,n,m);
+	getch();
+}
