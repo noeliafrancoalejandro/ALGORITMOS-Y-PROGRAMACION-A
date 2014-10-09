@@ -4,7 +4,7 @@ using namespace std;
 #define FIL 20
 #define COL 20
 void cargarespiral(int mat[FIL][COL],int n){
-int cont=0,c=1,i;
+int cont,c=1,i;
 for(cont=0;cont<=n/2;cont++){
 	for(i=cont;i<n-cont;i++){
 	mat[cont][i]=c++;
