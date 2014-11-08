@@ -1,0 +1,152 @@
+// UPSA Chat.cpp : main project file.
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#include <stdlib.h>
+
+
+using namespace std;
+void box(int regactual, int num, int registro[500], string inbox[1000]);
+void main()
+{   
+
+	system("Color 5A");
+	int x, j;
+	string nombres[500], apellidos[500], inbox[1000];
+	int i, num, op, encontrado;
+	int registro[500], contraseña[300];
+	cout<< "            \t    *******************************MENU******************************  \n\n                     ";
+	cout<< "     \t\t   -------UPSA CHAT---------  \n\n";
+    cout<< "----------------------------------------------------------------------------------";
+	cout<< "------------------------"; 
+    cout<< "\n\nBienvenidos a UPSA Chat un rincon de tecnologia que nos";
+	cout<< " permite compartir informacion y opinion acerca de las\n\n"; 
+    cout<< "nuevas tendencias que  observamos en el area";
+	cout<< " de electronica,informatica y redes.\n\n"; 
+	cout<< "----------------------------------------------------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n";
+	do
+	{	
+		cout << "******************************************  1. CREAR USUARIO   ******************************************************\n\n";
+		cout << "*********************************************************************************************************************\n\n"; 
+		cout << "******************************************  2. INICIAR SESION  ******************************************************\n\n";
+		cout << "*********************************************************************************************************************\n\n";
+		cout << "********************************************  INGRESE OPCION: *******************************************************\n\n";
+		cin >> op;
+		switch (op)
+		{
+		case 1:
+			cout<< "INGRESE CANTIDAD DE USUARIO QUE DESEA REGISTRAR: ";
+            cin>> num;
+            for(i=0;i<num;i++)
+			{   
+				cout<< "Ingrese el nombre: ";
+				cin >> nombres[i];
+				cout << "Ingrese el apellido: ";
+				cin >> apellidos[i];
+				fflush(stdin);
+				cout << "ingrese codigo de registro[" << i << "]: ";
+				cin >> registro[i];
+				cout << "ingrese contraseña[" << i << "]  ";
+				cin >> contraseña[i];
+			}
+			break;
+		case 2:
+			encontrado = 0;
+			cout << "INGRESE CODIGO DE REGISTRO: ";
+			cin >> x;
+			for(i=0;i<num;i++)
+			{
+				if(x==registro[i])
+			    {
+					int pwd;
+					encontrado = 1;
+					cout << "Codigo de registro localizado\n";
+					cout << "INTRODUZCA SU PASSWORD: ";
+					cin >> pwd;
+					if ( pwd == contraseña[i] )
+					{
+						system("cls");
+						cout << "CORRECTO. Bienvenido/a, " << nombres[i] << "!\n\n";
+						box(x,num,registro,inbox);
+					}
+					else
+					{
+						cout << "Informacion incorrecta. Introduzca nuevamente los datos.\n";
+					}
+				}
+			}
+			if ( encontrado == 0 )
+			{
+				cout << "Informacion incorrecta. Introduzca nuevamente los datos.\n";
+			}
+			break;	
+		default:
+			cout << "Opcion no valida\n";
+			system("pause");
+			system("cls");
+			
+			cin.clear();
+			cin.ignore(10000, '\n');
+            break;
+		}
+	}
+	while ( op != 0 );
+	_getch();
+}
+
+void box(int regactual, int num, int registro[500], string inbox[1000])
+{
+	int opc, a, i;
+	do
+	{
+		cout<< "1.ENVIAR MENSAJE\n\n";		
+	    cout<< "2.RECIBIR MENSAJE\n\n";
+		cout<< "0.SALIR DE LA CUENTA\n";
+		cout<< "ELIJA UNA OPCION: ";
+		cin>> opc;
+	
+		switch ( opc )
+		{
+		case 1: 
+			cout << "ENVIAR MENSAJE\n";
+			cout << "Ingrese el cod de registro a la persona que desea enviar el mensaje: ";
+			cin >> a;
+			for(i=0;i<num;i++)
+			{
+				if (a==registro[i])
+				{
+					fflush(stdin);
+					cout << "Escriba su mensaje:\n";
+					getline(cin, inbox[i]);
+				}
+			}
+			break;
+		case 2:
+			cout << "MENSAJES RECIBIDOS\n";
+			for(i=0; i<num; i++)
+			{
+				if (regactual == registro[i])
+				{
+					// Desplegar mensaje
+					cout << inbox[i] << endl;
+				}
+			}
+			break;
+		default:
+			{
+				cout << "Opcion no valida";
+                system("pause");
+			    system("cls");
+			    cin.clear();
+				cin.ignore(10000, '\n');
+			    break;
+			}
+
+		}
+	}
+	while ( opc != 0 );
+	system("cls");
+}
+
